@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wish Items</title>
+</head>
+<style>
+    .nav{
+        display: flex;
+        float: right;
+    }
+
+</style>
+<body>
+    <div class=nav>
+        <a href='/home'><button>Home</button></a>
+        <a href='/logout'><button>Logout</button></a>
+    </div>
+<h1>{{item.itemname}}</h1>
+
+<h3>Users who add this product/item under their wish list:</h3>
+<fieldset>
+{% for user in item.additems.all %}
+<h4>{{user.name}}<h4>
+{% endfor %}
+</fieldset>
+
+</body>
+</html>

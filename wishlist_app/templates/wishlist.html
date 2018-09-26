@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wishlist</title>
+    <style>
+    .logout{
+        text-align: right;
+    }
+    .navbar{
+        display: flex;
+        float: right;
+    }
+    table{
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    fieldset{
+        width: 96%;
+    }
+    </style>
+
+</head>
+<body>
+    <h2>Welcome Back!</h2>
+
+    <div class='logout'>
+        <a href='/logout'><button>Logout</button></a>
+    </div>
+    <br>
+    <fieldset>
+        <legend>Your Wishlist</legend>
+        <table border=1>
+            <tr>
+                <th>Item</th>
+                <th>Added By</th>
+                <th>Date Added</th>
+                <th>Action</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td><a href='/item/{{item.id}}'>{{item.itemname}}</a></td>
+                <td>{{item.user.username}}</td>
+                <td>{{item.date_added}}</td>
+                <td><a href='/wishitem/{{item.id}}'><button>Remove from Wishlist</button></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </fieldset>
+    <br>
+    <fieldset>
+            <legend>Other User's Wishlist</legend>
+            <table border=1>
+                <tr>
+                    <th>Item</th>
+                    <th>Added By</th>
+                    <th>Date Added</th>
+                    <th>Action</th>
+                </tr>
+                {% for item in add_item %}
+                <tr>
+                    <td><a href='/item/{{item.id}}'>{{item.itemname}}</a></td>
+                    <td>{{item.user.username}}</td>
+                    <td>{{item.date_added}}</td>
+                    <td><a href='/removeitem/{{item.id}}''><button>Add to Wishlist</button></a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </fieldset>
+    <br>
+    <div class=logout>
+        <a href='/additem'><button>Add Item</button></a>
+    </div>
+</body>
+</html>
